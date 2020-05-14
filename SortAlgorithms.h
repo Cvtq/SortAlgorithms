@@ -23,8 +23,8 @@ void selectionSort(vector<T> &arr) {
 		}
 		// Swap
 		T t = arr[i];
-		arr[i] = a[smallestIndex];
-		a[smallestIndex] = t;
+		arr[i] = arr[smallestIndex];
+		arr[smallestIndex] = t;
 	}
 }
 
@@ -46,8 +46,8 @@ void bubblenSort(vector<T>& arr) {
 			if (arr[j + 1] < arr[j]) {
 				// Swap
 				T t = arr[j];
-				arr[j] = a[j+1];
-				a[j+1] = t;
+				arr[j] = arr[j+1];
+				arr[j+1] = t;
 				lastExchangeIndex = j;
 			}
 		}
@@ -71,10 +71,28 @@ void insertionSort(vector<T>& arr) {
 		j = i;
 		t = arr[i];
 		while (j > 0 && t < arr[j - 1]) {
-			arr[j] = a[j - 1];
+			arr[j] = arr[j - 1];
 			j--;
 		}
 		arr[j] = t;
 	}
 
+}
+
+// Сортировка Шелла
+// Лучшее: O(n (log(n))^2)
+// Худшее: O(n^2)
+template <typename T>
+void shellSort(vector<T>& arr)
+{
+	size_t n = arr.size();
+	for (int gap = n / 2; gap > 0; gap /= 2) {
+		for (int i = gap; i < n; i += 1) {
+			int temp = arr[i];
+			int j;
+			for (j = i; j >= gap && arr[j - gap] > temp; j -= gap)
+				arr[j] = arr[j - gap];
+			arr[j] = temp;
+		}
+	}
 }

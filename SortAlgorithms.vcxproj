@@ -150,6 +150,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="additional.h" />
     <ClInclude Include="quickSort.h" />
     <ClInclude Include="SortAlgorithms.h" />
   </ItemGroup>
